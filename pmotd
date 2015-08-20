@@ -1,0 +1,19 @@
+#!/bin/bash
+
+PROCCOUNT=`ps -Afl | wc -l`
+PROCCOUNT=`expr $PROCCOUNT - 5`
+clear
+echo -e "\033[1;31m
+`figlet Pulshen`
+Welcome.. to real world..._
+\033[0;31m--------------------: \033[0;3mSystem Data\033[0;31m :--------------------
+\033[0;31m+   \033[0;37mAddress \033[0;31m= \033[1;33mlexforceterror.homenet.org
+\033[0;31m+    \033[0;37mKernel \033[0;31m= \033[1;33m`uname -r`
+\033[0;31m+    \033[0;37mUptime \033[0;31m= \033[1;33m`uptime | sed 's/.*up ([^,]*), .*/1/'`
+\033[0;31m+       \033[0;37mCPU \033[0;31m= \033[1;33mPentium(R) Dual-Core CPU E5200 @ 2.50GHz, 2 cores
+\033[0;31m+    \033[0;37mMemory \033[0;31m= \033[1;33m`cat /proc/meminfo | grep MemTotal | awk {'print $2'}` kB
+\033[0;31m--------------------: \033[0;37mUser Data\033[0;31m :--------------------
+\033[0;37m Username \033[0;37m= \033[1;37m`whoami`
+\033[0;37m \033[0;37mProcesses \033[0;37m= \033[1;33m$PROCCOUNT of `ulimit -u` MAX
+\033[0;37m
+"
