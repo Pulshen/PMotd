@@ -1,16 +1,28 @@
 #!/bin/bash
+
+ASCIIFONT=$(whoami)
+DESC="Welcome.. to real world..."
+
+function procname {
+  cat /proc/cpuinfo | awk -v FS=':' '  \
+  /^model name/  { model=$2 }           \
+  END{                                   \
+  nb_cpu=(nb_cpu+1);                      \
+  print model;                \
+}'
+}
+
 clear
 PROCCOUNT=`ps -Afl | wc -l`
 PROCCOUNT=`expr $PROCCOUNT - 5`
 echo -e "\033[1;36m
-`figlet Pulshen`
-Welcome.. to real world...
+`figlet $ASCIIFONT`
+$DESC
 \033[0;36m+--------------------: \033[0;3mSystem Data\033[0;36m :--------------------
-\033[0;36m+   \033[0;37mAddress \033[0;36m= \033[1;34mpulshen.github.io
-\033[0;36m+    \033[0;37mKernel \033[0;36m= \033[1;34m`uname -r`
+\033[0;36m+    \033[0;37mKernel \033[0;36m= \033[1;34m `uname -r`
 \033[0;36m+    \033[0;37mUptime \033[0;36m= \033[1;34m`uptime | sed 's/.*up ([^,]*), .*/1/'`
-\033[0;36m+       \033[0;37mCPU \033[0;36m= \033[1;34mIntel(R) Core(TM) i3-3120M CPU @ 2.50GHz
-\033[0;36m+    \033[0;37mMemory \033[0;36m= \033[1;34m`cat /proc/meminfo | grep MemTotal | awk {'print $2'}` kB
+\033[0;36m+    \033[0;37mCPU \033[0;36m= \033[1;34m   `procname`
+\033[0;36m+    \033[0;37mMemory \033[0;36m= \033[1;34m `cat /proc/meminfo | grep MemTotal | awk {'print $2'}` kB
 \033[0;36m--------------------: \033[0;37mUser Data\033[0;37m :--------------------
 \033[0;37m Username \033[0;36m= \033[1;34m`whoami`
 \033[0;37m \033[0;37mProcesses \033[0;36m= \033[1;34m$PROCCOUNT of `ulimit -u` MAX
