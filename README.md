@@ -1,8 +1,12 @@
-# PMotd
+PMotd
+========
 Customizable message of the day
 
-To work MOTD you need to install the following libraries :
-core-utils figlet bash
+Deps: figlet for ascii art
 
-### pmotd_v2
-do not use this version if your system have systemd instead sysvinit
+### FAQ
+
+You may edit ASCII art and text below
+
+`ASCII=` edit to your value or left default
+`DESC=` text below ASCII
