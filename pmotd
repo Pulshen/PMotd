@@ -2,6 +2,8 @@
 
 ASCIIFONT=$(whoami)
 DESC="Welcome.. to real world..."
+DISPLAYSERVICES=false
+
 
 function procname {
   cat /proc/cpuinfo | awk -v FS=':' '  \
@@ -25,6 +27,11 @@ $DESC
 \033[0;36m+    \033[0;37mMemory \033[0;36m= \033[1;34m `cat /proc/meminfo | grep MemTotal | awk {'print $2'}` kB
 \033[0;36m--------------------: \033[0;37mUser Data\033[0;37m :--------------------
 \033[0;37m+    Username  \033[0;36m= \033[1;34m`whoami`
-\033[0;37m+    \033[0;37mProcesses \033[0;36m= \033[1;34m$PROCCOUNT of `ulimit -u` MAX
-\033[0;36m
-"
+\033[0;37m+    \033[0;37mProcesses \033[0;36m= \033[1;34m$PROCCOUNT of `ulimit -u` MAX"
+if [ "$DISPLAYSERVICES" == "true" ]; then
+echo -e "\033[1;36m
+\033[0;36m-----------------: \033[0;37mServices Status\033[0;36m :------------------
+\033[0;36m+    \033[0;37mTSpeak3  \033[0;36m= \033[1;34m `systemctl -l status teamspeak3-server | grep "Active: " | awk {'print $2'}`
+\033[0;36m+    \033[0;37mLighttpd \033[0;36m= \033[1;34m `systemctl -l status lighttpd | grep "Active: " | awk {'print $2'}`
+\033[0;36m"
+fi
